@@ -1,0 +1,17 @@
+{
+  "name": "atendeticket-installer",
+  "version": "1.0.0",
+  "description": "Instalador CLI para AtendeTicket",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bin": {
+    "atendeticket-installer": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.7",
+    "cross-spawn": "^8.1.0"
+  }
+}
