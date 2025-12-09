@@ -43,42 +43,23 @@ async function runInstaller() {
 
         // Backend
         await createDatabase(answers.instancia_add, answers.mysql_root_password);
-        await createRedis(answers.instancia_add, answers.redisPort, answers.mysql_root_password);
+        await createRedis(answers.instancia_add, answers.redis_port, answers.mysql_root_password);
         await setBackendEnv(
-            '', // node_env
-            answers.backendUrl,
-            answers.frontendUrl,
-            443, // proxy_port
-            answers.backendPort,
+            'production', // node_env
+            answers.backend_url,
+            answers.frontend_url,
+            answers.backend_port,
             'localhost', // db_host
-            'postgres', // db_dialect
             answers.instancia_add, // db_user
             answers.mysql_root_password, // db_pass
             answers.instancia_add, // db_name
             5432, // db_port
-            'senha_master', // master_key
-            1, // import_fallback_file
-            1000, // timeout_to_import_message
-            3, // app_trialexpiration
+            'postgres', // db_dialect
             jwt_secret,
             jwt_refresh_secret,
             redis_uri,
-            1, // redis_opt_limiter_max
-            3000, // redis_opt_limiter_duration
-            8, // flow_menu_cooldown_sec
             answers.max_user, // user_limit
-            answers.max_whats, // connections_limit
-            true, // closed_send_by_me
-            'whaticket', // verify_token
-            '', // mp_access_token
-            '2813216208828642', // facebook_app_id
-            '8233912aeade366dd8e2ebef6be256b6', // facebook_app_secret
-            'smtp.gmail.com', // smtp_host
-            '587', // smtp_port
-            'false', // smtp_secure
-            'seuemail@gmail.com', // smtp_user
-            'suasenha', // smtp_pass
-            'Redefinição de senha <seuemail@gmail.com>' // smtp_from
+            answers.max_whats // connections_limit
         );
         await installBackendDeps();
         await buildBackend();
@@ -89,11 +70,11 @@ async function runInstaller() {
 
         // Frontend
         await setFrontendEnv(
-            answers.backendUrl,
+            answers.backend_url,
             24, // hours_close_tickets_auto
             'https', // backend_protocol
-            answers.backendUrl.replace(/^https?:\/\//, ''), // backend_host
-            answers.backendPort, // backend_port_param
+            answers.backend_url.replace(/^https?:\/\//, ''), // backend_host
+            answers.backend_port, // backend_port_param
             'pt-br', // locale
             'America/Sao_Paulo', // timezone
             '55XXXXXXXXXXX', // number_support
@@ -111,11 +92,11 @@ async function runInstaller() {
         await installFrontendDeps();
         await buildFrontend();
         await startFrontendPM2();
-        await setupFrontendNginx(answers.frontendUrl.replace(/^https?:\/\//, ''));
+        await setupFrontendNginx(answers.frontend_url.replace(/^https?:\/\//, ''));
 
         // SSL
-        const backend_domain = answers.backendUrl.replace(/^https?:\/\//, '');
-        const frontend_domain = answers.frontendUrl.replace(/^https?:\/\//, '');
+        const backend_domain = answers.backend_url.replace(/^https?:\/\//, '');
+        const frontend_domain = answers.frontend_url.replace(/^https?:\/\//, '');
         await setupSSL(backend_domain, frontend_domain, answers.deploy_email);
 
         success('Instalação completa do Multizap!');
