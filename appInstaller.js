@@ -116,7 +116,7 @@ async function runInstaller() {
         // SSL
         const backend_domain = answers.backendUrl.replace(/^https?:\/\//, '');
         const frontend_domain = answers.frontendUrl.replace(/^https?:\/\//, '');
-        await setupSSL(backend_domain, frontend_domain, answers.deployEmail);
+        await setupSSL(backend_domain, frontend_domain, answers.deploy_email);
 
         success('Instalação completa do Multizap!');
     }
