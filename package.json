@@ -1,6 +1,6 @@
 {
   "name": "atendeticket",
-  "version": "2.1.9",
+  "version": "2.1.10",
   "description": "Instalador CLI para AtendeTicket",
   "main": "index.js",
   "scripts": {
