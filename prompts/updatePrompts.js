@@ -1,4 +1,4 @@
-const inquirer = require('inquirer');
+const inquirer = require("inquirer");
 
 async function updatePrompts() {
     const answers = await inquirer.prompt([

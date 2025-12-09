@@ -1,4 +1,4 @@
-const inquirer = require('inquirer');
+const inquirer = require("inquirer");
 
 async function mainMenuPrompt() {
     const answers = await inquirer.prompt([
@@ -9,10 +9,14 @@ async function mainMenuPrompt() {
             choices: [
                 { name: 'Instalar sistema', value: 'install' },
                 { name: 'Atualizar sistema', value: 'update' },
+                { name: 'Deletar instância', value: 'delete' },
+                { name: 'Bloquear instância', value: 'block' },
+                { name: 'Desbloquear instância', value: 'unblock' },
+                { name: 'Alterar domínio', value: 'changeDomain' },
             ],
         },
     ]);
-    return answers.action;
+    return answers;
 }
 
 module.exports = { mainMenuPrompt };

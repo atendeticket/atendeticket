@@ -1,4 +1,4 @@
-const inquirer = require('inquirer');
+const inquirer = require("inquirer");
 
 async function installPrompts() {
     const answers = await inquirer.prompt([

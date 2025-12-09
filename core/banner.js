@@ -1,13 +1,17 @@
-const chalk = require('chalk');
+const fs = require("fs");
+const path = require("path");
+const chalk = require("chalk");
 
 function showBanner() {
-    console.log(chalk.blue(`
-     ___       _           _        _    _ _       
-    / _ \\ _ __(_)_   _____| | ___  | |  (_) | ___  
-   | | | | '__| \\ \\ / / _ \\ |/ _ \\ | |  | | |/ _ \\ 
-   | |_| | |  | |\\ V /  __/ |  __/ | |__| | |  __/ 
-    \\___/|_|  |_| \\_/ \\___|_|\\___| |____/|_|\\___| 
-    `));
+  try {
+    const asciiPath = path.join(__dirname, ".ascii");
+    const ascii = fs.readFileSync(asciiPath, "utf8");
+
+    console.log(chalk.cyan(ascii));
+  } catch (error) {
+    console.error(chalk.red("Erro ao carregar o arquivo ascii.txt"));
+    console.error(error.message);
+  }
 }
 
 module.exports = { showBanner };

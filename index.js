@@ -4,7 +4,7 @@ const { mainMenuPrompt } = require('./prompts/mainMenu');
 const { handleMenu } = require('./appInstaller');
 
 (async () => {
-    showBanner();
+    await showBanner();
     const choice = await mainMenuPrompt();
     await handleMenu(choice);
 })();
