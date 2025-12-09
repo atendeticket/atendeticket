@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "publish": "npm version patch && npm publish --access public"
+    "atualizar": "npm version patch && npm publish --access public"
   },
   "bin": {
     "atendeticket": "./index.js"
