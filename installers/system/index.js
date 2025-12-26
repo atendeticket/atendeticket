@@ -4,7 +4,12 @@ const { installDocker } = require('./installDocker');
 const { installPM2 } = require('./installPM2');
 const { installNginx } = require('./installNginx');
 const { installCertbot } = require('./installCertbot');
-const { createUser } = require('./createUser');
+const { systemCreateUser } = require('./createUser');
+const { systemCreateFolder } = require('./createFolder');
+const { systemCopyProjectFiles } = require('./copyProjectFiles');
+const { systemUnzipMultizap } = require('./unzipMultizap');
+const { systemNginxRestart } = require('./nginxRestart');
+const { systemCertbotSetup } = require('./certbotSetup');
 
 module.exports = {
     updateSystem,
@@ -13,5 +18,10 @@ module.exports = {
     installPM2,
     installNginx,
     installCertbot,
-    createUser
+    systemCreateUser,
+    systemCreateFolder,
+    systemCopyProjectFiles,
+    systemUnzipMultizap,
+    systemNginxRestart,
+    systemCertbotSetup
 };
